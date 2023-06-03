@@ -67,7 +67,7 @@ public class EmployeeController {
 		}
 	}
 
-	// get employee by id rest apii
+	// get employee by id rest apiii
 	@GetMapping("/findEmployee/{id}")
 	public ResponseEntity<Employee> getTutorialById(@PathVariable("id") long id) {
 		Optional<Employee> tutorialData = employeeRepository.findById(id);
