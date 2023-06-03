@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bke.app.model.Employee;
 import com.bke.app.repository.EmployeeRepository;
 
-
 @RestController
 @RequestMapping("api/")
 public class EmployeeController {
@@ -65,6 +64,18 @@ public class EmployeeController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	// get employee by id rest api
+	@GetMapping("/findEmployee/{id}")
+	public ResponseEntity<Employee> getTutorialById(@PathVariable("id") long id) {
+		Optional<Employee> tutorialData = employeeRepository.findById(id);
+
+		if (tutorialData.isPresent()) {
+			return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
